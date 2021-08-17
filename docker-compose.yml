@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  main_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    env_file:
+      - ./.env
+    entrypoint:
+      - ./entrypoint.sh
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - main_app
+      - db
+    volumes:
+      - ./static/:/static
+    env_file:
+      - ./.env
+    ports:
+      - 80:80
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - .dbdata/:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    expose:
+      - 5432
