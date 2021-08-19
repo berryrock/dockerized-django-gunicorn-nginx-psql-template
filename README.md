@@ -32,16 +32,24 @@ Template for easy running django app served by nginx + gunicorn with postgres as
 - POSTGRES_PORT=5432
 
 
-3. Run in shell following commands:
+3. Prepare docker volumes for Postgres:
+```
+docker volume create --name=pgdata
+```
+
+4. Give permissions to execute entrypoint file for Django app
 ```
 chmod +x entrypoint.sh
+```
+
+5. Build and run:
+```
 docker-compose build
 docker-compose up
 ```
 
-4. Enjoy!
+6. Enjoy!
 
 ***
 
 [Author](http://berryrock.ru/)
-
