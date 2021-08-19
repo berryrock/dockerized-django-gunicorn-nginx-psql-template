@@ -34,7 +34,7 @@ Template for easy running django app served by nginx + gunicorn with postgres as
 
 3. Prepare docker volumes for Postgres:
 ```
-docker volume create --name=pgdata
+docker volume create --name=pgdata_for_main_app
 ```
 
 4. Give permissions to execute entrypoint file for Django app
