@@ -28,7 +28,7 @@ services:
       - 80:80
 
   db:
-    image: postgres
+    image: postgres:13.0-alpine
     restart: always
     volumes:
       - dbdata/:/var/lib/postgresql/data
